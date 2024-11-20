@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final UserRepository repository;
@@ -37,5 +40,20 @@ public class UserService {
 
         //Salvar as mudanças
         return repository.save(foundUser);
+    }
+    public User getUserById(long id) {
+        Optional<User> user = Optional.ofNullable(repository.findById(id).orElseThrow(() -> new RuntimeException("User not found!")));
+        return user.get();
+    }
+
+    public List<User> getAllUsers() {
+        return repository.findAll();
+    }
+
+    public void deleteUserById(long id) {
+        if(repository.findById(id).isPresent()) {
+            repository.deleteById(id);
+        } else
+            throw new RuntimeException("User not found!");
     }
 }
