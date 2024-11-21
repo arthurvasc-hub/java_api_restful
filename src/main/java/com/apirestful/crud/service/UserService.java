@@ -4,11 +4,11 @@ package com.apirestful.crud.service;
 import com.apirestful.crud.model.User;
 import com.apirestful.crud.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -27,33 +27,33 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User updateUser(User user, long id) {
-        User foundUser = repository.findById(id).orElseThrow(()-> new RuntimeException("User not found!"));
+    public User updateUser(User newUser, long id) {
+        User user = repository.findById(id).orElseThrow(()-> new RuntimeException("User not found!"));
 
-        //Atualizar os dados
-        if(user.getPassword() != null) {
-            foundUser.setPassword(encoder.encode(user.getPassword()));
-        }
-        foundUser.setName(user.getName());
-        foundUser.setUsername(user.getUsername());
-        foundUser.setPassword(user.getPassword());
+            if (newUser.getName() != null)
+                user.setName(newUser.getName());
 
-        //Salvar as mudanças
-        return repository.save(foundUser);
-    }
+            if (newUser.getUsername() != null)
+                user.setUsername(newUser.getUsername());
+
+            if (newUser.getPassword() != null && !newUser.getPassword().isBlank())
+                user.setPassword(encoder.encode(newUser.getPassword()));
+
+        return repository.save(user);
+    };
     public User getUserById(long id) {
-        Optional<User> user = Optional.ofNullable(repository.findById(id).orElseThrow(() -> new RuntimeException("User not found!")));
-        return user.get();
-    }
+        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
+        return user;
+    };
 
     public List<User> getAllUsers() {
         return repository.findAll();
-    }
+    };
 
     public void deleteUserById(long id) {
-        if(repository.findById(id).isPresent()) {
+        if (repository.findById(id).isPresent() )
             repository.deleteById(id);
-        } else
+        else
             throw new RuntimeException("User not found!");
-    }
+    };
 }

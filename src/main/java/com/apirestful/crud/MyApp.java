@@ -12,10 +12,12 @@ import org.springframework.stereotype.Component;
 public class MyApp implements CommandLineRunner {
 
     @Autowired
-    UserRepository repository;
-    UserService service;
+    UserService userService;
     @Override
     public void run(String... args) throws Exception {
 
+
+            User user = new User("Arthur", "arthurvasc", "arthur008");
+            userService.saveUser(user);
     }
 }

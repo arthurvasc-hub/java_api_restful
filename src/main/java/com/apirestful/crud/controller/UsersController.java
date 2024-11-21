@@ -10,16 +10,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/users")
 public class UsersController {
-    UserRepository repository;
+
     @Autowired
-    UserService userService;
-    @GetMapping("/users")
+    UserRepository repository;
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping()
     public List<User> getUsers(){
        return userService.getAllUsers();
     }
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable int id){
         return userService.getUserById(id);
+    }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable long id, @RequestBody User user){
+        return userService.updateUser(user, id);
+
     }
 }

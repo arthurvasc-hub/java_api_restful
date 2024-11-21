@@ -1,4 +1,4 @@
-package com.apirestful.crud.config;
+package com.apirestful.crud.security;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class BCryptGenerator {

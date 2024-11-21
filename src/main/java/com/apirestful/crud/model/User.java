@@ -3,6 +3,9 @@ package com.apirestful.crud.model;
 import lombok.Getter;
 import jakarta.persistence.*;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.util.Objects;
@@ -10,6 +13,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "user_table")
 public class User {
+
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +33,10 @@ public class User {
 
 
     public User(String name, String username, String password) {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
         this.name = name;
         this.username = username;
-        this.password = password;
+        this.password = encoder.encode(password);
     }
 
     public User() {
