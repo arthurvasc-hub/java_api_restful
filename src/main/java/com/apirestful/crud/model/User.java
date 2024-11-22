@@ -1,9 +1,10 @@
 package com.apirestful.crud.model;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import jakarta.persistence.*;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -16,18 +17,27 @@ public class User {
 
     @Getter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     @Getter
     @Setter
+    @NotNull(message = "O nome é obrigatório.")
+    @NotEmpty(message = "O nome não pode estar vazio.")
     @Column(length = 25, nullable= false)
     private String name;
+
     @Getter
     @Setter
+    @NotNull(message = "O username é obrigatório.")
+    @NotEmpty(message = "O username não pode estar vazio.")
     @Column(length = 20, nullable= false, unique=true)
     private String username;
+
     @Getter
     @Setter
+    @NotNull(message = "A senha é obrigatória.")
+    @NotEmpty(message = "A senha não pode estar vazio.")
     @Column(length = 100, nullable= false)
     private String password;
 

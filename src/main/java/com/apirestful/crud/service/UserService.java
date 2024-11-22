@@ -57,8 +57,7 @@ public class UserService {
     };
     // Encontrar usuário através do Id (GET)
     public User getUserById(long id) {
-        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
-        return user;
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
     };
     // Ecnontrar todos os usuários (GET)
     public List<User> getAllUsers() {
@@ -66,10 +65,8 @@ public class UserService {
     };
     // Deletar usuário através do Id (DELETE).
     public void deleteUserById(long id) {
-        if (repository.findById(id).isPresent() )
-            repository.deleteById(id);
-        else
-            throw new RuntimeException("User not found!");
+        User user = repository.findById(id).orElseThrow(()-> new RuntimeException("User not found!"));
+        repository.delete(user);
     };
 
 }
