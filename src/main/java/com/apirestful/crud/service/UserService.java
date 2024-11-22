@@ -20,40 +20,56 @@ public class UserService {
     public UserService(UserRepository repository, PasswordEncoder encoder) {
         this.repository = repository;
         this.encoder = encoder;
-    }
+    };
 
     public User saveUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         return repository.save(user);
-    }
+    };
+    // Criar usuário (POST)
+    public User createUser(User user) {
 
-    public User updateUser(User newUser, long id) {
-        User user = repository.findById(id).orElseThrow(()-> new RuntimeException("User not found!"));
+        if(user.getName() != null)
+            user.setName(user.getName());
 
-            if (newUser.getName() != null)
-                user.setName(newUser.getName());
+        if(user.getUsername() != null)
+            user.setUsername(user.getUsername());
 
-            if (newUser.getUsername() != null)
-                user.setUsername(newUser.getUsername());
-
-            if (newUser.getPassword() != null && !newUser.getPassword().isBlank())
-                user.setPassword(encoder.encode(newUser.getPassword()));
+        if(user.getPassword() != null && !user.getPassword().isBlank())
+            user.setPassword(encoder.encode(user.getPassword()));
 
         return repository.save(user);
     };
+    // Atualizar usuário (PUT)
+    public User updateUser(User newUser, long id) {
+        User user = repository.findById(id).orElseThrow(()-> new RuntimeException("User not found!"));
+
+        if (newUser.getName() != null)
+            user.setName(newUser.getName());
+
+        if (newUser.getUsername() != null)
+            user.setUsername(newUser.getUsername());
+
+        if (newUser.getPassword() != null && !newUser.getPassword().isBlank())
+            user.setPassword(encoder.encode(newUser.getPassword()));
+
+        return repository.save(user);
+    };
+    // Encontrar usuário através do Id (GET)
     public User getUserById(long id) {
         User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
         return user;
     };
-
+    // Ecnontrar todos os usuários (GET)
     public List<User> getAllUsers() {
         return repository.findAll();
     };
-
+    // Deletar usuário através do Id (DELETE).
     public void deleteUserById(long id) {
         if (repository.findById(id).isPresent() )
             repository.deleteById(id);
         else
             throw new RuntimeException("User not found!");
     };
+
 }

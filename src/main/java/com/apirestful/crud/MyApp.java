@@ -16,8 +16,5 @@ public class MyApp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-
-            User user = new User("Arthur", "arthurvasc", "arthur008");
-            userService.saveUser(user);
     }
 }
