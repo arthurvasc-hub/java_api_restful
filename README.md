@@ -16,8 +16,10 @@ Esta é uma **API RESTful** desenvolvida com **Spring Boot** e **Java** para ger
 - **Spring Boot** 3.x
 - **Spring Web** (para os controladores REST)
 - **Spring Data JPA** (para interação com o banco de dados)
+- **Spring Security** (para segurança e autenticação)
 - **H2 Database** (banco de dados em memória para testes, pode ser substituído por outro banco)
 - **Swagger OpenAPI 3.0** (para documentação interativa)
+- **dotenv-java** (para gerenciar variáveis de ambiente)
 
 ## Instalação
 
