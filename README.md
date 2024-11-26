@@ -52,14 +52,5 @@ A API vem com Swagger integrado para gerar a documentação interativa. Para ace
 Abra o navegador e acesse http://localhost:8080/swagger-ui.html
 A documentação interativa estará disponível para testar os endpoints diretamente pela interface web.
 
-### Como Contribuir
-
-Se você deseja contribuir para este projeto, siga os passos abaixo:
-
-Faça um fork do repositório.
-Crie uma branch para sua feature (git checkout -b feature/nome-da-feature).
-Faça commit das suas alterações (git commit -m 'Add new feature').
-Envie para a branch principal (git push origin feature/nome-da-feature).
-Abra um Pull Request.
 
   
