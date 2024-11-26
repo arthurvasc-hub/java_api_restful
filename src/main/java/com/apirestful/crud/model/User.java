@@ -1,5 +1,6 @@
 package com.apirestful.crud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class User {
     @Setter
     @NotNull(message = "A senha é obrigatória.")
     @NotEmpty(message = "A senha não pode estar vazio.")
+    @JsonIgnore
     @Column(length = 100, nullable= false)
     private String password;
 
