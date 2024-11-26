@@ -33,8 +33,8 @@ Para rodar esta API localmente, siga os passos abaixo:
 1. **Clone este repositório**:
 
    ```bash
-   git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
-   cd SEU_REPOSITORIO
+   git clone https://github.com/arthurvasc-hub/java_api_restful
+   cd java_api_restful
 2. **Instale as dependências:**:
    Se você tiver o Maven instalado, execute o seguinte comando:
    - mvn clean install
