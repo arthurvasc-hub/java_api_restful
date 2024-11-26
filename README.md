@@ -52,7 +52,7 @@ A API vem com Swagger integrado para gerar a documentação interativa. Para ace
 Abra o navegador e acesse http://localhost:8080/swagger-ui.html
 A documentação interativa estará disponível para testar os endpoints diretamente pela interface web.
 
-###Como Contribuir
+### Como Contribuir
 
 Se você deseja contribuir para este projeto, siga os passos abaixo:
 
